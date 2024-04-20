@@ -1,0 +1,42 @@
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+}
+
+.list li a {
+    height: 33rem;
+    width: 20rem;
+    border: 2px solid #e72929;
+    border-radius: 1rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: whitesmoke;
+}
+
+.image {
+    object-fit: cover;
+    height: 25rem;
+}
+
+.content {
+    margin-top: 0.3rem;
+    padding: 0.3rem 1rem;
+    position: relative;
+    height: 7rem;
+}
+
+.price {
+    position: absolute;
+    bottom: 0;
+    left: 0.9rem;
+    background-color: black;
+    color: #e72929;
+    margin-top: 0.3rem;
+    font-size: 1.1rem;
+}
