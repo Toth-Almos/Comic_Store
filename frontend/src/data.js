@@ -29,7 +29,7 @@ export const sample_data = [
     {
         id: '4',
         name: 'Deadpool: Worlds Greatest #1',
-        price: '9.59',
+        price: '10.20',
         creators: ['Gerry Duggan', 'Mike Hawthorne', 'Tony Moore'],
         releaseYear: '2016',
         studio: 'Marvel',
