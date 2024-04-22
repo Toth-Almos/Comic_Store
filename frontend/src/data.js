@@ -6,7 +6,7 @@ export const sample_data = [
         creators: ['Jock', 'Clem Robins', 'Bob Kane', 'Bill Finger'],
         releaseYear: '2022',
         studio: 'DC',
-        imageUrl: 'one_dark_knight.jpg',
+        imageUrl: 'comic_1.jpg',
     },
     {
         id: '2',
@@ -15,7 +15,7 @@ export const sample_data = [
         creators: ['Grant Morrison', 'Dave McKean'],
         releaseYear: '2021',
         studio: 'DC',
-        imageUrl: 'arkham_asylum.jpg',
+        imageUrl: 'comic_2.jpg',
     },
     {
         id: '3',
@@ -24,7 +24,7 @@ export const sample_data = [
         creators: ['Charles Soule', 'Giuseppe Camuncoli'],
         releaseYear: '2017',
         studio: 'Marvel',
-        imageUrl: 'darth_vader_1.jpg',
+        imageUrl: 'comic_3.jpg',
     },
     {
         id: '4',
@@ -33,7 +33,7 @@ export const sample_data = [
         creators: ['Gerry Duggan', 'Mike Hawthorne', 'Tony Moore'],
         releaseYear: '2016',
         studio: 'Marvel',
-        imageUrl: 'deadpool_1.jpg',
+        imageUrl: 'comic_4.jpg',
     },
     {
         id: '5',
@@ -42,6 +42,6 @@ export const sample_data = [
         creators: [' Frank Miller', 'David Mazzucchelli'],
         releaseYear: '2010',
         studio: 'Marvel',
-        imageUrl: 'daredevil_born_again.jpg',
+        imageUrl: 'comic_5.jpg',
     },
 ];
