@@ -3,6 +3,7 @@ package com.toth_almos.comicbookstore.controller;
 import com.toth_almos.comicbookstore.model.Comic;
 import com.toth_almos.comicbookstore.service.ComicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.metadata.HsqlTableMetaDataProvider;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/comic")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ComicController {
     @Autowired
     private ComicService comicService;
@@ -23,9 +24,14 @@ public class ComicController {
 
     @GetMapping("/getAll")
     public List<Comic> getAllComics() {
-//        if(true) {
-//            throw new RuntimeException(comicService.getAllComics().toString());
-//        }
+        /*try {
+            if(true) {
+                throw new RuntimeException(comicService.getAllComics().toString());
+            }
+        }
+        catch(RuntimeException exception) {
+            System.out.println(exception.getMessage());
+        }*/
         return comicService.getAllComics();
     }
 }

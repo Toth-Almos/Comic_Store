@@ -2,7 +2,7 @@ import { sample_data } from "../data";
 import axios from "axios";
 
 export const getAll = async () => {
-    const { comics } = await axios.get('http://localhost:8080/comic/getAll');
+    const { comics } = await axios.get("http//localhost:8080/comic/getAll");
     return comics;
 };
 
