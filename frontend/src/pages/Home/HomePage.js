@@ -4,32 +4,30 @@ import Thumbnails from '../../components/Thumbnails/Thumbnails';
 import Search from '../../components/Search/Search'
 import { useParams } from 'react-router-dom';
 
-const initialState = { callComics: [] };
+const initialState = { products: [] };
 
 const reducer = (state, action) => {
-    switch(action.type){
-        case 'COMICS_LOADED':
-            return {...state, comics: action.payload };
+    switch (action.type) {
+        case 'PRODUCTS_LOADED':
+            return { ...state, products: action.payload };
         default:
-            return state;
+             return state;
     }
-}
+};
 
-export default function HomePage() {
+export function HomePage() {
     const [state, dispatch] = useReducer(reducer, initialState);
-    const { comics } = state;
+    const { products } = state;
     const { searchTerm } = useParams();
 
-   useEffect(() => {
-    const loadComics = searchTerm ? search(searchTerm) : getAll();
-    console.log(loadComics);
-    loadComics.then(comics => dispatch({ type: 'Comics_LOADED', payload: comics}));
-   }, [searchTerm]);
+    useEffect( () => {
+        const loadProducts = getAll();
+        loadProducts.then(products => dispatch({ type: 'PRODUCTS_LOADED', payload: products }));
+    }, [searchTerm]);
 
     return (
     <>
-        <Search/>
-        <Thumbnails comics={comics} />
+        {console.log(products)}
     </>
-  )
+  );
 }

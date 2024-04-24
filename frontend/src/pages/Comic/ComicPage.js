@@ -16,7 +16,7 @@ export default function ComicPage() {
     };
 
     useEffect(() => {
-        getById(id).then(setComic);
+       // getById(id).then(setComic);
     }, [id]);
 
     return (

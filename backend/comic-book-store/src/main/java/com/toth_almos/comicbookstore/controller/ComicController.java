@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
-@RequestMapping("/comic")
 @CrossOrigin(origins = "*")
+@RestController
+@RequestMapping(path = "api/v1/comics")
 public class ComicController {
     @Autowired
     private ComicService comicService;
@@ -22,16 +22,8 @@ public class ComicController {
         return "New Comic is added";
     }
 
-    @GetMapping("/getAll")
+    @GetMapping()
     public List<Comic> getAllComics() {
-        /*try {
-            if(true) {
-                throw new RuntimeException(comicService.getAllComics().toString());
-            }
-        }
-        catch(RuntimeException exception) {
-            System.out.println(exception.getMessage());
-        }*/
         return comicService.getAllComics();
     }
 }
