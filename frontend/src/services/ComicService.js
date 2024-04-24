@@ -9,11 +9,11 @@ export const getAll = async () => {
 export const search = async searchTerm => {
     const response = await api.get('comics/' + searchTerm);
     return null;
-}
+}*/
 
 
 export const getById = async productId => {
-    const response = await api.get('comic/' + productId);
+    const response = await api.get('api/v1/comics/' + productId);
     return response.data;
 };
-*/
+

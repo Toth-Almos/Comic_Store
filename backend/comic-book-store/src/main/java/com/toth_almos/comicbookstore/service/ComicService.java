@@ -4,6 +4,7 @@ import com.toth_almos.comicbookstore.model.Comic;
 import java.util.List;
 
 public interface ComicService {
-    public Comic saveComic(Comic comic);
+    public void saveComic(Comic comic);
     public List<Comic> getAllComics();
+    public Comic getComicById(int givenID);
 }

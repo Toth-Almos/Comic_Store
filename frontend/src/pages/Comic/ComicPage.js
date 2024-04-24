@@ -16,13 +16,13 @@ export default function ComicPage() {
     };
 
     useEffect(() => {
-       // getById(id).then(setComic);
+       getById(id).then(setComic);
     }, [id]);
 
     return (
         <>
         { comic && <div className={classes.container}>
-            <img className={classes.image} src={`/comics/${comic.imageUrl}`} alt={comic.name} />
+            <img className={classes.image} src={`/comics/comic_default.jpg`} alt={comic.name} />
             <div className={classes.details}>
                 <div className={classes.header}>
                     <span className={classes.name}>{comic.name}</span>
@@ -34,7 +34,7 @@ export default function ComicPage() {
 
                 <div className={classes.creators}>
                     <span>Created by: </span> 
-                    {comic.creators?.map(c => (
+                    {comic.creators && comic.creators.split(";").map(c => (
                         <span key={c}>{c} | </span>
                     ))}
                 </div>

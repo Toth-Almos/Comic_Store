@@ -27,7 +27,9 @@ export function HomePage() {
 
     return (
     <>
+        <Search/>
         {console.log(products)}
+        <Thumbnails comics = { products } />
     </>
   );
 }
