@@ -24,6 +24,14 @@ public class ComicServiceImplementation implements ComicService {
 
     @Override
     public Comic getComicById(int givenID) {
-        return comicRepository.getReferenceById(givenID);
+        if(comicRepository.findById(givenID).isPresent()) {
+            return comicRepository.findById(givenID).get();
+        }
+        return null;
+    }
+
+    @Override
+    public Comic getComicBySearch(String name) {
+        return comicRepository.findByName(name);
     }
 }

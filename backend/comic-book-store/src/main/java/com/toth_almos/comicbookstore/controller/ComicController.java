@@ -35,4 +35,9 @@ public class ComicController {
         }
         return ResponseEntity.ok(comic);
     }
+
+    @GetMapping("/search/{name}")
+    public List<Comic> getComicBySearch(@PathVariable String name) {
+        return comicService.getComicBySearch(name);
+    }
 }
