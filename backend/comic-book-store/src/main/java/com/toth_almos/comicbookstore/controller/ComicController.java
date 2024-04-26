@@ -37,7 +37,7 @@ public class ComicController {
     }
 
     @GetMapping("/search/{name}")
-    public List<Comic> getComicBySearch(@PathVariable String name) {
+    public List<Comic> getComicBySearch(@PathVariable("name") String name) {
         return comicService.getComicBySearch(name);
     }
 }

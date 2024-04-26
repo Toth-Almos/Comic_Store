@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class ComicServiceImplementation implements ComicService {
@@ -31,7 +32,7 @@ public class ComicServiceImplementation implements ComicService {
     }
 
     @Override
-    public Comic getComicBySearch(String name) {
-        return comicRepository.findByName(name);
+    public List<Comic> getComicBySearch(String name) {
+        return comicRepository.findByName(name.toLowerCase());
     }
 }

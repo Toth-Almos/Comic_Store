@@ -5,14 +5,14 @@ export const getAll = async () => {
     return response.data;
 };
 
-/*
-export const search = async searchTerm => {
-    const response = await api.get('comics/' + searchTerm);
-    return null;
-}*/
+
+export const search = async (searchTerm) => {
+    const response = await api.get('api/v1/comics/search/' + searchTerm);
+    return response.data;
+}
 
 
-export const getById = async productId => {
+export const getById = async (productId) => {
     const response = await api.get('api/v1/comics/' + productId);
     return response.data;
 };

@@ -21,7 +21,7 @@ export function HomePage() {
     const { searchTerm } = useParams();
 
     useEffect( () => {
-        const loadProducts = getAll();
+        const loadProducts = searchTerm ? search(searchTerm) : getAll();
         loadProducts.then(products => dispatch({ type: 'PRODUCTS_LOADED', payload: products }));
     }, [searchTerm]);
 
