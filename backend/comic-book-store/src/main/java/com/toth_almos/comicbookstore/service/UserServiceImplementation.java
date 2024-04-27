@@ -1,0 +1,53 @@
+package com.toth_almos.comicbookstore.service;
+
+import com.toth_almos.comicbookstore.Dto.LoginDTO;
+import com.toth_almos.comicbookstore.Dto.UserDTO;
+import com.toth_almos.comicbookstore.model.User;
+import com.toth_almos.comicbookstore.repository.UserRepository;
+import com.toth_almos.comicbookstore.response.LoginResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UserServiceImplementation implements UserService {
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Override
+    public String registerUser(UserDTO userDTO) {
+        User newUser = new User(userDTO.getId(), userDTO.getUserName(), userDTO.getEmail(), this.passwordEncoder.encode(userDTO.getPassword()));
+        userRepository.save(newUser);
+        return newUser.getUserName();
+    }
+
+    @Override
+    public LoginResponse loginUser(LoginDTO loginDTO) {
+        String message = "";
+        User user1 = userRepository.findByEmail(loginDTO.getEmail());
+        if(user1 != null) {
+            String pwd = loginDTO.getPassword();
+            String encodedPassword = user1.getPassword();
+            boolean isPwdRight = passwordEncoder.matches(pwd, encodedPassword);
+            if(isPwdRight) {
+                Optional<User> user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+                if(user.isPresent()) {
+                    return new LoginResponse("Login Success!", true);
+                }
+                else {
+                    return new LoginResponse("Login Failed!", false);
+                }
+            }
+            else {
+                return new LoginResponse("Wrong password!", false);
+            }
+        }
+        else {
+            return new LoginResponse("Email does not exist!", false);
+        }
+    }
+}
