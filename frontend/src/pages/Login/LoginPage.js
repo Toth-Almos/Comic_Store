@@ -5,7 +5,6 @@ import { useAuthentication } from '../../hooks/useAuthentication';
 import classes from './loginPage.module.css';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
-import Button from '../../components/Button/Button';
 
 export default function LoginPage() {
   const {
@@ -18,6 +17,7 @@ export default function LoginPage() {
   const { user, login } = useAuthentication();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
+  console.log(user);
 
   useEffect(() => {
     if (!user) return;
@@ -38,7 +38,10 @@ export default function LoginPage() {
             label="Email"
             {...register('email', {
               required: true,
-              pattern: '_%+-]+@[a-zA-Z0-9. -]+\\. [a-zA-Z]{2,}$/',
+              pattern: {
+                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,63}$/i,
+                message: 'Email Is Not Valid',
+              },
             })}
             error={errors.email}
           />
@@ -56,7 +59,7 @@ export default function LoginPage() {
 
           <div className={classes.register}>
             New user? &nbsp;
-            <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
+            <Link className={classes.registerLink} to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
               Register here
             </Link>
           </div>

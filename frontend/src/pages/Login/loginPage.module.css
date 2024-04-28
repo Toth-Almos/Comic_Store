@@ -20,4 +20,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: whitesmoke;
+}
+
+button {
+    color: white;
+    background-color: #e72929;
+    border: none;
+    font-size: 1.2rem;
+    padding: 1rem;
+    border-radius: 10rem;
+    outline: none;
+}
+
+button:hover {
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+.registerLink {
+    color: white;
+    text-decoration: underline;
 }

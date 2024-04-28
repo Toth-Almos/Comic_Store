@@ -36,18 +36,21 @@ public class UserServiceImplementation implements UserService {
             if(isPwdRight) {
                 Optional<User> user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if(user.isPresent()) {
-                    return new LoginResponse("Login Success!", true);
+                    return new LoginResponse("Login Success!", true, user.toString(), loginDTO.getEmail());
                 }
                 else {
-                    return new LoginResponse("Login Failed!", false);
+                    return new LoginResponse("Login Failed!", false, "No user", "No email");
+                    //return null;
                 }
             }
             else {
-                return new LoginResponse("Wrong password!", false);
+                //return null;
+                return new LoginResponse("Wrong password!", false, "No user", "No email");
             }
         }
         else {
-            return new LoginResponse("Email does not exist!", false);
+            //return null;
+            return new LoginResponse("Email does not exist!", false, "No user", "No email");
         }
     }
 }

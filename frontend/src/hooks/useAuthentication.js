@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react';
-import * as userService from '../api/userService';
+import * as userService from '../services/UserService';
 
 const AuthContext = createContext(null);
 
@@ -9,8 +9,15 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             const user = await userService.login(email, password);
-            setUser(user);
-            alert("Login Succesfull");
+            if(user.message === "Login Success!") {
+                setUser(user);
+                alert("Login Succesfull with user: " + user);
+            }
+            else {
+                alert("Email does not exist or you gave wrong password or email!");
+                setUser(null);
+            }
+            
         }
         catch (error) {
             alert(error.response.data);
