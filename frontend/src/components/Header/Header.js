@@ -7,8 +7,8 @@ import { useAuthentication } from '../../hooks/useAuthentication';
 export default function Header() {
   
   const {user, logout } = useAuthentication();
-  const { cart } = useCart();
-    
+  const { cart, removeAllFromCart } = useCart();
+
     return (
         <header className={classes.header}>
             <div className={classes.container}>
@@ -16,29 +16,30 @@ export default function Header() {
                     Kaboom!
                 </Link>
                 <nav>
-                    <ul>
                         {user ? (
-                            <li className={classes.menu_container}>
-                                <Link to="/dashboard">{user.name}</Link>
-                                <div className={classes.menu}>
-                                    <Link to="/profile">Profile</Link>
-                                    <Link to="/orders">Orders</Link>
-                                    <a onClick={logout}>Logout</a>
-                                </div>
-                            </li>
+                            <ul>
+                                <li className={classes.menu_container}>
+                                    <Link to="/dashboard">{user}</Link>
+                                    <div className={classes.menu}>
+                                        <Link to="/profile">Profile</Link>
+                                        <Link to="/orders">Orders</Link>
+                                        <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <Link to="/cart">
+                                        Cart
+                                        {cart.totalCount > 0 && (
+                                        <span className={cart.totalCount}> ({cart.totalCount})</span>
+                                        )}
+                                    </Link>
+                                </li>
+                            </ul>
                         ) : (
-                            <Link to="/login">Login</Link>
-                        )}
-
-                        <li>
-                            <Link to="/cart">
-                                Cart
-                                {cart.totalCount > 0 && (
-                                <span className={cart.totalCount}> ({cart.totalCount})</span>
-                                )}
-                            </Link>
-                        </li>
-                    </ul>
+                            <ul>
+                                <Link to="/login">Login</Link>
+                            </ul>
+                        )}  
                 </nav>
             </div>
         </header>

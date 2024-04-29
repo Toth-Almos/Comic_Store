@@ -20,7 +20,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public String registerUser(UserDTO userDTO) {
-        User newUser = new User(userDTO.getId(), userDTO.getUserName(), userDTO.getEmail(), this.passwordEncoder.encode(userDTO.getPassword()));
+        User newUser = new User(userDTO.getUserName(), userDTO.getEmail(), this.passwordEncoder.encode(userDTO.getPassword()));
         userRepository.save(newUser);
         return newUser.getUserName();
     }
@@ -34,9 +34,9 @@ public class UserServiceImplementation implements UserService {
             String encodedPassword = user1.getPassword();
             boolean isPwdRight = passwordEncoder.matches(pwd, encodedPassword);
             if(isPwdRight) {
-                Optional<User> user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
-                if(user.isPresent()) {
-                    return new LoginResponse("Login Success!", true, user.toString(), loginDTO.getEmail());
+                User user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
+                if(user != null) {
+                    return new LoginResponse("Login Success!", true, user.getUserName(), loginDTO.getEmail());
                 }
                 else {
                     return new LoginResponse("Login Failed!", false, "No user", "No email");

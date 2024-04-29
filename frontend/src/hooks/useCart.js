@@ -39,6 +39,12 @@ export default function CartProvider({ children }) {
         return sum;
     }
 
+    const removeAllFromCart = () => {
+        setCartItems([]);
+        setTotalCount(0);
+        setTotalPrice(0);
+    };
+
     //to remove from cart:
     const removeFromCart = (comicId) => {
         const filteredCartItems = cartItems.filter(item => item.comic.id !== comicId);
@@ -74,6 +80,7 @@ export default function CartProvider({ children }) {
         removeFromCart,
         changeQuantity,
         addToCart,
+        removeAllFromCart,
     }}
     >
         {children}

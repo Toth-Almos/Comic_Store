@@ -13,9 +13,6 @@ export default function RegisterPage() {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (!user) return;
@@ -29,7 +26,7 @@ export default function RegisterPage() {
     formState: { errors },
   } = useForm();
 
-  const submit = async data => {
+  const submit = async (data) => {
     await auth.register(data);
   };
 
@@ -37,7 +34,7 @@ export default function RegisterPage() {
     <div className={classes.container}>
       <div className={classes.details}>
         <Title title="Register" />
-        <form onSubmit={handleSubmit(submit)} noValidate>
+          <form onSubmit={handleSubmit(submit)} noValidate>
           <Input
             type="text"
             label="UserName"

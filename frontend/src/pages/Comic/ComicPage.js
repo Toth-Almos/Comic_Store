@@ -3,16 +3,23 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getById } from '../../services/ComicService';
 import classes from './comicPage.module.css';
 import { useCart } from '../../hooks/useCart';
+import { getUser } from '../../services/UserService';
 
 export default function ComicPage() {
     const [comic, setComic] = useState({});
     const {id} = useParams();
     const { addToCart } = useCart();
+    const [user, setUser] = useState(getUser());
     const navigate = useNavigate();
 
     const handleAddToCart = () => {
-        addToCart(comic);
-        navigate('/cart');
+        if(user) {
+            addToCart(comic);
+            navigate('/cart');
+        }
+        else {
+            alert("You need to login to buy products!");
+        }
     };
 
     useEffect(() => {

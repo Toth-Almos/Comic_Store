@@ -10,8 +10,8 @@ export const AuthProvider = ({ children }) => {
         try {
             const user = await userService.login(email, password);
             if(user.message === "Login Success!") {
-                setUser(user);
-                alert("Login Succesfull with user: " + user);
+                setUser(user.userName);
+                alert("Login Succesfull with user: " + user.userName);
             }
             else {
                 alert("Email does not exist or you gave wrong password or email!");
@@ -24,7 +24,7 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    const register = async data => {
+    const register = async (data) => {
         try {
             const user = await userService.register(data);
             setUser(user);

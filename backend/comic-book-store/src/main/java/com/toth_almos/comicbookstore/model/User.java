@@ -16,6 +16,12 @@ public class User {
     private String password;
     private String email;
 
+    public User(String userName, String email, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+    }
+
     //Getters and Setters:
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
