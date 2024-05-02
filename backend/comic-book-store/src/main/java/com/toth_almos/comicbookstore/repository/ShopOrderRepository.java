@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ShopOrderRepository extends JpaRepository<ShopOrder, Integer> {
 
-    @Query("SELECT o FROM ShopOrder o WHERE o.userId = givenUserId")
+    @Query("SELECT o FROM ShopOrder o WHERE o.userId = ?1")
     List<ShopOrder> findByUserId(int givenUserId);
 }
