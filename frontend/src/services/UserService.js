@@ -9,6 +9,7 @@ export const login = async (email, password) => {
     const {data} = await api.post('api/v1/user/login', {email, password});
     if(data.message === "Login Success!") {
         localStorage.setItem('user', JSON.stringify(data.userName));
+        localStorage.setItem('userId', JSON.stringify(data.userId));
     }
     return data;
 };
@@ -19,11 +20,12 @@ export const register = async (registerData) => {
         email: registerData.email,
         password: registerData.password,
     });
-    console.log(data);
     localStorage.setItem('user', JSON.stringify(data.userName));
+    localStorage.setItem('userId', JSON.stringify(data.userId));
     return data;
 };
 
 export const logout = () => {
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
 };

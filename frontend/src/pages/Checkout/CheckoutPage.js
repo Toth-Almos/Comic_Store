@@ -10,7 +10,7 @@ import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 
 export default function CheckoutPage() {
-    const { cart } = useCart();
+    const { cart, removeAllFromCart } = useCart();
     const { user } = useAuthentication();
     const navigate = useNavigate();
     //shallow copy of products in cart:
@@ -23,8 +23,10 @@ export default function CheckoutPage() {
     } = useForm();
 
     const submit = async (data) => {
-        //TODO:
-        //await createOrder();
+        await createOrder({ ...order, username: data.username, shippingAddress: data.shippingAddress});
+        //TODO: createOrderLine() for all type of products!!!
+        removeAllFromCart();
+        navigate('/');
     } 
 
    return(
@@ -35,14 +37,18 @@ export default function CheckoutPage() {
           <div className={classes.inputs}>
             <Input
               defaultValue={user.name}
-              label="Name"
-              {...register('name')}
+              label="Username"
+              {...register('username', {
+                required: true,
+              })}
               error={errors.name}
             />
             <Input
               defaultValue={user.address}
               label="Address"
-              {...register('address')}
+              {...register('shippingAddress', {
+                required: true,
+              })}
               error={errors.address}
             />
           </div>

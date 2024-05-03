@@ -21,13 +21,17 @@ public class UserServiceImplementation implements UserService {
     @Override
     public String registerUser(UserDTO userDTO) {
         User newUser = new User(userDTO.getUserName(), userDTO.getEmail(), this.passwordEncoder.encode(userDTO.getPassword()));
-        userRepository.save(newUser);
-        return newUser.getUserName();
+        if(newUser.getEmail() == null || newUser.getUserName() == null || newUser.getPassword() == null) {
+            return "Registration failed!";
+        }
+        else {
+            userRepository.save(newUser);
+            return newUser.getUserName();
+        }
     }
 
     @Override
     public LoginResponse loginUser(LoginDTO loginDTO) {
-        String message = "";
         User user1 = userRepository.findByEmail(loginDTO.getEmail());
         if(user1 != null) {
             String pwd = loginDTO.getPassword();
@@ -36,21 +40,21 @@ public class UserServiceImplementation implements UserService {
             if(isPwdRight) {
                 User user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if(user != null) {
-                    return new LoginResponse("Login Success!", true, user.getUserName(), loginDTO.getEmail());
+                    return new LoginResponse("Login Success!", true, user.getUserName(), loginDTO.getEmail(), user.getId());
                 }
                 else {
-                    return new LoginResponse("Login Failed!", false, "No user", "No email");
+                    return new LoginResponse("Login Failed!", false, "No user", "No email", 0);
                     //return null;
                 }
             }
             else {
                 //return null;
-                return new LoginResponse("Wrong password!", false, "No user", "No email");
+                return new LoginResponse("Wrong password!", false, "No user", "No email", 0);
             }
         }
         else {
             //return null;
-            return new LoginResponse("Email does not exist!", false, "No user", "No email");
+            return new LoginResponse("Email does not exist!", false, "No user", "No email", 0);
         }
     }
 }

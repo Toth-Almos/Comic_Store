@@ -39,6 +39,7 @@ export default function CartProvider({ children }) {
         return sum;
     }
 
+    //to reset cart when users logs out:
     const removeAllFromCart = () => {
         setCartItems([]);
         setTotalCount(0);
