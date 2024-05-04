@@ -71,7 +71,7 @@ export default function CartProvider({ children }) {
             changeQuantity(cartItem, cartItem.quantity + 1);
         }
         else {
-            setCartItems([...cartItems, { comic, quantity: 1, price: comic.price}]);
+            setCartItems([...cartItems, { comic, quantity: 1, price: comic.price, id: comic.id }]);
         }
     }
 

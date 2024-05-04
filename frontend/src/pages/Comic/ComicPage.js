@@ -29,7 +29,7 @@ export default function ComicPage() {
     return (
         <>
         { comic && <div className={classes.container}>
-            <img className={classes.image} src={`/comics/comic_default.jpg`} alt={comic.name} />
+            <img className={classes.image} src={`/comics/comic_` + comic.id + `.jpg`} alt={comic.name} />
             <div className={classes.details}>
                 <div className={classes.header}>
                     <span className={classes.name}>{comic.name}</span>

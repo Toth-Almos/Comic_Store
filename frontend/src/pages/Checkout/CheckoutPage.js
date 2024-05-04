@@ -5,7 +5,7 @@ import { useAuthentication } from '../../hooks/useAuthentication';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createOrder } from '../../services/OrderService';
+import { createOrder, createOrderLine } from '../../services/OrderService';
 import Title from '../../components/Title/Title';
 import Input from '../../components/Input/Input';
 
@@ -23,8 +23,8 @@ export default function CheckoutPage() {
     } = useForm();
 
     const submit = async (data) => {
-        await createOrder({ ...order, username: data.username, shippingAddress: data.shippingAddress});
-        //TODO: createOrderLine() for all type of products!!!
+        const shopOrderId = await createOrder({ ...order, username: data.username, shippingAddress: data.shippingAddress});
+        await cart.items.map(item => createOrderLine(item, shopOrderId));
         removeAllFromCart();
         navigate('/');
     } 

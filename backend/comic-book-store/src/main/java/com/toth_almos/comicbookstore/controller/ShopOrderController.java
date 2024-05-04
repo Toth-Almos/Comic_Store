@@ -19,12 +19,11 @@ public class ShopOrderController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createShopOrder(@RequestBody ShopOrderDTO shopOrderDTO) {
-        //null?
-        String newShopOrderResponse = shopOrderService.createShopOrder(shopOrderDTO);
-        if(newShopOrderResponse == "Order was successful!") {
+        int newShopOrderResponse = shopOrderService.createShopOrder(shopOrderDTO);
+        if(newShopOrderResponse != -1) {
             return ResponseEntity.ok(newShopOrderResponse);
         }
-        return new ResponseEntity<String>(newShopOrderResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Integer>(newShopOrderResponse, HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/orders")

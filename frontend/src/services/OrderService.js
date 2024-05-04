@@ -9,11 +9,19 @@ export const createOrder = async (order) => {
         status: "Under process",
     });
     if(data) {
-        alert(data + " Thank you for your purchase!");
+        alert("Thank you for your purchase! ShopOrderId: " + data);
     }
     return data;
 };
 
-export const createOrderLine = async (order) => {
-    //TODO
+export const createOrderLine = async (item, shopOrderId) => {
+    const { data } = await api.post('api/v1/order_line/create', {
+        shopOrderId: shopOrderId,
+        productId: item.id,
+        quantity: item.quantity,
+    });
+    if(data) {
+        console.log(data);
+    }
+    return data;
 }

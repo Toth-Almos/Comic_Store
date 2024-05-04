@@ -8,7 +8,7 @@ export default function Thumbnails({ comics }) {
       {comics && comics.map(comic => (
         <li key={comic.id}>
             <Link to={`/comic/${comic.id}`}>
-                <img className={classes.image} src={`/comics/comic_default.jpg`} alt={comic.name} />
+                <img className={classes.image} src={`/comics/comic_` + comic.id + `.jpg`} alt={comic.name} />
             
                 <div className={classes.content}>
                     <div className={classes.name}>{comic.name}</div>

@@ -14,13 +14,13 @@ public class ShopOrderService {
     @Autowired
     private ShopOrderRepository shopOrderRepository;
 
-    public String createShopOrder(ShopOrderDTO shopOrderDTO) {
+    public int createShopOrder(ShopOrderDTO shopOrderDTO) {
         if(shopOrderDTO != null) {
             ShopOrder newShopOrder = new ShopOrder(shopOrderDTO.getUserId(), shopOrderDTO.getShippingAddress(), shopOrderDTO.getOrderDate(), shopOrderDTO.getTotalPrice(), shopOrderDTO.getStatus());
             shopOrderRepository.save(newShopOrder);
-            return "Order was successful!";
+            return newShopOrder.getId();
         }
-        return "Something went wrong! We could not save your order. Please try again.";
+        return -1;
     }
 
     public List<ShopOrder> getOrdersForUser(int userId) {
