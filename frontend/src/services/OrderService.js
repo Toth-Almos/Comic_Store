@@ -25,3 +25,18 @@ export const createOrderLine = async (item, shopOrderId) => {
     }
     return data;
 }
+
+export const getAllOrdersForUser = async (userId) => {
+    const { data } =  await api.get('api/v1/shop_order/orders', {
+        params: { userId: userId }
+    });
+    return data;
+}
+
+export const getAllLinesForOrder = async (shopOrderId) => {
+    const { data } = await api.get('api/v1/order_line/get_for_shop_order', {
+        params: { shopOrderId: shopOrderId }
+    });
+    console.log(data);
+    return data;
+}

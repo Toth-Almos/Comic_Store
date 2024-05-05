@@ -26,12 +26,12 @@ public class OrderLineController {
         return new ResponseEntity<String>("Could not create OrderLine entity!", HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/from_shop_order")
+    @GetMapping("/get_for_shop_order")
     public ResponseEntity<?> getOrderLineFromShopOrder(@RequestParam int shopOrderId) {
         List<OrderLine> orderLines = orderLineService.getOrderLineFromShopOrder(shopOrderId);
         if(orderLines != null) {
             return ResponseEntity.ok(orderLines);
         }
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<String>("Could not get OrderLines for this ShopOrder!", HttpStatus.BAD_REQUEST);
     }
 }
