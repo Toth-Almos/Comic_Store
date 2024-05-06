@@ -26,9 +26,9 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (data) => {
         try {
-            const user = await userService.register(data);
-            setUser(user);
-            alert('Register Successful');
+            const response = await userService.register(data);
+            alert(response);
+            
         } catch (error) {
             alert(error.response.data);
         }

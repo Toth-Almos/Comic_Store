@@ -26,7 +26,7 @@ public class UserServiceImplementation implements UserService {
         }
         else {
             userRepository.save(newUser);
-            return newUser.getUserName();
+            return "Registration Success!";
         }
     }
 
@@ -40,21 +40,21 @@ public class UserServiceImplementation implements UserService {
             if(isPwdRight) {
                 User user = userRepository.findUserByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if(user != null) {
-                    return new LoginResponse("Login Success!", true, user.getUserName(), loginDTO.getEmail(), user.getId());
+                    return new LoginResponse("Login Success!", true, user.getUserName(), loginDTO.getEmail(), user.getId(), user.getIsAdmin());
                 }
                 else {
-                    return new LoginResponse("Login Failed!", false, "No user", "No email", 0);
+                    return new LoginResponse("Login Failed!", false, "No user", "No email", 0, false);
                     //return null;
                 }
             }
             else {
                 //return null;
-                return new LoginResponse("Wrong password!", false, "No user", "No email", 0);
+                return new LoginResponse("Wrong password!", false, "No user", "No email", 0, false);
             }
         }
         else {
             //return null;
-            return new LoginResponse("Email does not exist!", false, "No user", "No email", 0);
+            return new LoginResponse("Email does not exist!", false, "No user", "No email", 0, false);
         }
     }
 }

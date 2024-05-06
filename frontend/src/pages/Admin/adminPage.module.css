@@ -1,0 +1,64 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+}
+
+.comic_name {
+    color: black;
+}
+
+.price {
+    color: darkgreen;
+    font-size: large;
+}
+
+.list {
+    margin: 1rem;
+    max-width: 70rem;
+    padding: 2rem;
+    background-color: whitesmoke;
+    border: 3px solid #e72929;
+}
+
+a.add_comic {
+    display: inline-block;
+    background: #e72929;
+    color: whitesmoke;
+    padding: 0.7rem;
+    margin: 0.8rem 0;
+    border-radius: 1.5rem;
+}
+
+a.add_comic:hover {
+    opacity: 0.8;
+}
+
+.list_item {
+    display: grid;
+    grid-template-columns:
+        minmax(5rem, 7rem) minmax(10rem, 20rem) minmax(5rem, 10rem) minmax(5rem, 10rem);
+    font-size: 1.2rem;
+    height: 6rem;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e72929;
+    padding-left: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.list_item img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100rem;
+    object-fit: cover;
+}
+
+.actions>a {
+    margin-right: 1rem;
+    color: whitesmoke;
+    cursor: pointer;
+    background-color: #e72929;
+    padding: 0.5rem;
+}

@@ -7,7 +7,10 @@ import LoginPage from './pages/Login/LoginPage'
 import RegisterPage from './pages/Register/RegisterPage'
 import CheckoutPage from './pages/Checkout/CheckoutPage'
 import AuthRoute from './components/AuthRoute/AuthRoute'
+import AdminRoute from './components/AdminRoute/AdminRoute'
 import OrdersPage from './pages/Orders/OrdersPage'
+import AdminPage from './pages/Admin/AdminPage'
+import AdminEditPage from './pages/AdminEdit/AdminEditPage'
 
 export default function AppRoutes() {
   return (
@@ -20,6 +23,9 @@ export default function AppRoutes() {
         <Route path="/register" element={<RegisterPage/>} />
         <Route path="/checkout" element={<AuthRoute> <CheckoutPage/> </AuthRoute>} />
         <Route path="/orders" element={<AuthRoute> <OrdersPage/> </AuthRoute>} />
+        <Route path="/admin" element={<AdminRoute> <AdminPage/> </AdminRoute> } />
+        <Route path="/admin/addComic" element={<AdminRoute> <AdminEditPage/> </AdminRoute> } />
+        <Route path="/admin/editComic/:comicId" element={<AdminRoute> <AdminEditPage/> </AdminRoute> } />
     </Routes>
   )
 }

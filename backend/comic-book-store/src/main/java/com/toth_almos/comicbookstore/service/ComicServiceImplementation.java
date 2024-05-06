@@ -35,4 +35,11 @@ public class ComicServiceImplementation implements ComicService {
     public List<Comic> getComicBySearch(String name) {
         return comicRepository.findByName(name.toLowerCase());
     }
+
+    @Override
+    public void deleteComicById(int givenID) {
+        comicRepository.deleteById(givenID);
+    }
+
+
 }

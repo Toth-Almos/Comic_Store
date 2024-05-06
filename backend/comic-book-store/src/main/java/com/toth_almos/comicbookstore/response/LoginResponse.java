@@ -13,4 +13,5 @@ public class LoginResponse {
     private String userName;
     private String email;
     private int userId;
+    private boolean isAdmin;
 }

@@ -4,6 +4,7 @@ import com.toth_almos.comicbookstore.model.Comic;
 import com.toth_almos.comicbookstore.service.ComicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.metadata.HsqlTableMetaDataProvider;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -41,5 +42,17 @@ public class ComicController {
     @GetMapping("/search/{name}")
     public List<Comic> getComicBySearch(@PathVariable("name") String name) {
         return comicService.getComicBySearch(name);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteComicById(@PathVariable("id") int id) {
+        try {
+            System.out.println("The given id was: " + id);
+            comicService.deleteComicById(id);
+        }
+        catch (IllegalArgumentException e) {
+            return new ResponseEntity<String>("The given Id was not acceptable!",HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<String>("Comic{" + id + "} was deleted!",HttpStatus.OK);
     }
 }

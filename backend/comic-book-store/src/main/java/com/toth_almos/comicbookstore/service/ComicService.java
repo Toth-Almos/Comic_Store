@@ -8,4 +8,5 @@ public interface ComicService {
     public List<Comic> getAllComics();
     public Comic getComicById(int givenID);
     public List<Comic> getComicBySearch(String name);
+    public void deleteComicById(int givenID);
 }

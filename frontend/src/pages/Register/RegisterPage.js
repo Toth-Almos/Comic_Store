@@ -14,10 +14,10 @@ export default function RegisterPage() {
   const [params] = useSearchParams();
   const returnUrl = params.get('returnUrl');
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (!user) return;
-    returnUrl ? navigate(returnUrl) : navigate('/');
-  }, [user]);
+    returnUrl ? navigate(returnUrl) : navigate('/login');
+  }, [user]);*/
 
   const {
     handleSubmit,
