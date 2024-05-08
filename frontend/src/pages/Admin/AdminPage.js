@@ -43,7 +43,7 @@ export default function FoodsAdminPage() {
               <div className={classes.comic_name}>
                 <Link to={'/comic/' + comic.id}>{comic.name}</Link>
               </div>
-              <div className={classes.price}>{comic.price} EUR</div>
+              <div className={classes.price}>EUR {comic.price}</div>
               <div className={classes.actions}>
                 <Link to={'/admin/editComic/' + comic.id}>Edit</Link>
                 <button onClick={() => deleteComic(comic)}>Delete</button>

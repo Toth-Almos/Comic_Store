@@ -12,4 +12,5 @@ public interface ComicService {
     public Comic getComicById(int givenID);
     public List<Comic> getComicBySearch(String name);
     public void deleteComicById(int givenID);
+    public ResponseEntity<?> updateComic(Comic comic);
 }

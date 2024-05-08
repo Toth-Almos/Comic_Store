@@ -21,18 +21,28 @@ export default function Header() {
                                 <li className={classes.menu_container}>
                                     <Link to="/dashboard">{user}</Link>
                                     <div className={classes.menu}>
-                                        <Link to="/profile">Profile</Link>
-                                        <Link to="/orders">Orders</Link>
-                                        <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
+                                        {localStorage.getItem('isAdmin') === "true" ? (
+                                            <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
+                                        ) : (
+                                            <div>
+                                                <Link to="/profile">Profile</Link>
+                                                <Link to="/orders">Orders</Link>
+                                                <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
+                                            </div>
+                                        )}                                        
                                     </div>
                                 </li>
                                 <li>
-                                    <Link to="/cart">
+                                    {localStorage.getItem('isAdmin') === "true" ? (
+                                        <Link to="/admin">Manage Comics</Link>
+                                    ) : (
+                                        <Link to="/cart">
                                         Cart
                                         {cart.totalCount > 0 && (
                                         <span className={cart.totalCount}> ({cart.totalCount})</span>
                                         )}
                                     </Link>
+                                    )}                                  
                                 </li>
                             </ul>
                         ) : (

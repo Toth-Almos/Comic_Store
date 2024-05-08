@@ -49,5 +49,11 @@ public class ComicServiceImplementation implements ComicService {
         comicRepository.deleteById(givenID);
     }
 
+    @Override
+    public ResponseEntity<?> updateComic(Comic comic) {
+        comicRepository.save(comic);
+        return ResponseEntity.ok(comic);
+    }
+
 
 }

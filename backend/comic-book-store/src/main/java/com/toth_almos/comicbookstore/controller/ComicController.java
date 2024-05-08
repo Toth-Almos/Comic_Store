@@ -51,4 +51,20 @@ public class ComicController {
         }
         return new ResponseEntity<String>("Comic{" + id + "} was deleted!",HttpStatus.OK);
     }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<?> updateComic(@PathVariable("id") int id, @RequestBody ComicDTO comicDTO) {
+        Comic comic = comicService.getComicById(id);
+        if(comic == null) {
+            return new ResponseEntity<>("Comic not found for this id: " + id, HttpStatus.BAD_REQUEST);
+        }
+        comic.setName(comicDTO.getName());
+        comic.setPrice(comicDTO.getPrice());
+        comic.setCreators(comicDTO.getCreators());
+        comic.setReleaseYear(comicDTO.getReleaseYear());
+        comic.setStudio(comicDTO.getStudio());
+        comicService.updateComic(comic);
+
+        return new ResponseEntity<>("Comic was successfully updated!", HttpStatus.OK);
+    }
 }
