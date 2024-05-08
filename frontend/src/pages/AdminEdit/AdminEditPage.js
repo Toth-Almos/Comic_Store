@@ -39,7 +39,11 @@ export default function FoodEditPage() {
     }
 
     const newComic = await addNewComic(comic);
-    alert(`Comic: "${comic.name}" added successfully!`);
+    if(comic.id) {
+      alert(`Comic: "${comic.name}" added successfully!`);
+    } else {
+      alert(comic);
+    }
     navigate('/admin/editComic/' + newComic.id, { replace: true });
   };
 

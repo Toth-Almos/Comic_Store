@@ -1,14 +1,11 @@
 package com.toth_almos.comicbookstore.controller;
 
+import com.toth_almos.comicbookstore.Dto.ComicDTO;
 import com.toth_almos.comicbookstore.model.Comic;
 import com.toth_almos.comicbookstore.service.ComicService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.metadata.HsqlTableMetaDataProvider;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -20,9 +17,8 @@ public class ComicController {
     private ComicService comicService;
 
     @PostMapping("/add")
-    public String add(@RequestBody Comic comic) {
-        comicService.saveComic(comic);
-        return "New Comic is added";
+    public ResponseEntity<?> add(@RequestBody ComicDTO comicDTO) {
+        return comicService.addComic(comicDTO);
     }
 
     @GetMapping()

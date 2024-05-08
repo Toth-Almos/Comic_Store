@@ -23,7 +23,13 @@ export const deleteById = async (productId) => {
 }
 
 export const addNewComic = async (comic) => {
-    const { data } = await api.post('api/v1/comics/add');
+    const { data } = await api.post('api/v1/comics/add', {
+        name: comic.name,
+        price: comic.price,
+        creators: comic.creators,
+        releaseYear: comic.releaseYear,
+        studio: comic.studio
+    });
     return data;
 }
 

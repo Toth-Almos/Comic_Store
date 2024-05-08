@@ -22,6 +22,13 @@ public class Comic {
     private int releaseYear;
     private String studio;
 
+    public Comic(String name, double price, String creators, int releaseYear, String studio) {
+        this.name = name;
+        this.price = price;
+        this.creators = creators;
+        this.releaseYear = releaseYear;
+        this.studio = studio;
+    }
 
     //Getters & Setters:
     public int getId() {
