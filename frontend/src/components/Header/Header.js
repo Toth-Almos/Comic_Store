@@ -25,7 +25,6 @@ export default function Header() {
                                             <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
                                         ) : (
                                             <div>
-                                                <Link to="/profile">Profile</Link>
                                                 <Link to="/orders">Orders</Link>
                                                 <a onClick={() => {logout(); removeAllFromCart()}}>Logout</a>
                                             </div>

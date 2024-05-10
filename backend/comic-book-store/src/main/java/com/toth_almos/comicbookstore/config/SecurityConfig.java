@@ -20,13 +20,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    SecurityFilterChain web(HttpSecurity http) throws Exception {
+    public SecurityFilterChain web(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).csrf(AbstractHttpConfigurer::disable);
-
-        //http.authorizeHttpRequests(request -> request.requestMatchers("/api/v1/comics/**")
-        //                .permitAll())
-        //        .httpBasic(Customizer.withDefaults());
-
         return http.build();
     }
 }

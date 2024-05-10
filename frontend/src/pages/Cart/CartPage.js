@@ -16,7 +16,7 @@ export default function CartPage() {
                 <ul className={classes.list}>
                     {cart.items.map(item => <li key={item.comic.id}>
                         <div>
-                            <img src={`/comics/${item.comic.imageUrl}`} alt={item.comic.name} />
+                            <img src={`/comics/comic_${item.comic.id}.jpg`} alt={item.comic.name} />
                         </div>
                         <div>
                             <Link to={`/comic/${item.comic.id}`}>{item.comic.name}</Link>
